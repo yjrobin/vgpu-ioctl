@@ -1,5 +1,5 @@
 # git clone --recurse-submodules -b main --single-branch https://github.com/pytorch/benchmark torch-benchmark
-FROM python:3.11.9-bookworm
+FROM harbor.4pd.io/sagegpt-aio/pk_platform/python:3.11.9-bullseye
 COPY torch-benchmark /workspace/torch-benchmark
 WORKDIR /workspace/torch-benchmark
 RUN pip install --pre --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu121
