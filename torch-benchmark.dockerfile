@@ -11,8 +11,10 @@ RUN apt update && apt install libgl1 -y && apt clean
 RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 RUN pip install --no-cache-dir torch torchvision torchaudio --index-url https://mirror.sjtu.edu.cn/pytorch-wheels/cu121
 # https://download.pytorch.org/whl/nightly/cu121
+ENV HF_ENDPOINT=https://hf-mirror.com
 # RUN python install.py
 
 # build : docker build -t harbor.4pd.io/sagegpt-aio/pk_platform/torch-benchmark:py311-`cd torch-benchmark && git rev-parse --short HEAD` -f torch-benchmark.dockerfile .
 # run :
 # docker run -it --rm --gpus all torch-benchmark:py311-11cf319f bash
+# nvidia-smi --query-accounted-apps=gpu_name,gpu_uuid,pid,time,gpu_util,mem_util,max_memory_usage --format=csv
