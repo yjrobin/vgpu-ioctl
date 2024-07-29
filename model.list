@@ -1,5 +1,4 @@
 resnet50
-stable_diffusion_text_encoder
 detectron2_maskrcnn
 yolov3
 BERT_pytorch
