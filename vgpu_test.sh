@@ -10,10 +10,25 @@ docker run -it --rm --name yj-vgpu-test \
 
 docker run -it --rm --name yj-vgpu-test \
     --gpus all \
-    -e CUDA_DEVICE_MEMORY_LIMIT=100m \
+    -e CUDA_DEVICE_MEMORY_LIMIT=1000m \
     -e LD_PRELOAD=/usr/local/vgpu/libvgpu.so \
     -v /usr/share/vgpu/libvgpu.so:/usr/local/vgpu/libvgpu.so \
     -v /tmp/vgpulock:/tmp/vgpulock \
+    -v `pwd`/results:/results \
     --shm-size 1g \
-    harbor.4pd.io/sagegpt-aio/pk_platform/torch-benchmark:py311-53d98e3 \
-    bash
+    harbor.4pd.io/sagegpt-aio/pk_platform/torch-benchmark:py311-53d98e3-test-BERT_pytorch-yj \
+    bash /scripts/run_PASS_if_return_nonzero.sh
+
+docker run -it --rm --name yj-vgpu-test \
+    --gpus all \
+    -e CUDA_DEVICE_MEMORY_LIMIT=512m \
+    -e LD_PRELOAD=/usr/local/vgpu/libvgpu.so \
+    -v /usr/share/vgpu/libvgpu.so:/usr/local/vgpu/libvgpu.so \
+    -v /tmp/vgpulock:/tmp/vgpulock \
+    -v `pwd`/results:/results \
+    --shm-size 1g \
+    harbor.4pd.io/sagegpt-aio/pk_platform/torch-benchmark:py311-53d98e3-test-BERT_pytorch-yj \
+    bash /scripts/run_PASS_if_return_nonzero.sh
+
+# 'vm': {'vmid': 'd0-470', 'ip': '172.28.103.41'}
+# 'vm': {'vmid': 'd0-471', 'ip': '172.28.103.42'}
