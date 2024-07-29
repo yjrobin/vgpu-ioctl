@@ -9,8 +9,9 @@ then
         then
             printf '%s\n' "$model_name"
                 image_name="${base_image}-${model_name}"
-                echo "$image_name"
-                docker build --build-arg MODEL_NAME=${model_name} -t ${image_name} -f build-test-cases-image.dockerfile .
+                echo "get gpu usage in $image_name"
+                docker run -it --rm --gpus all build -v `pwd`/${HOSTNAME}:/results $image_name /scripts/get_max_vmem_usage.sh eval
+                docker run -it --rm --gpus all build -v `pwd`/${HOSTNAME}:/results $image_name /scripts/get_max_vmem_usage.sh train
         fi
     done < "$model_list"
 else
