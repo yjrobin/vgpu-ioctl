@@ -1,6 +1,6 @@
 #!/bin/bash
 base_image="harbor.4pd.io/sagegpt-aio/pk_platform/torch-benchmark:py311-53d98e3"
-model_list="model.list"
+model_list=${1:-"model.list"}
 if [ -f $model_list ]
 then
     while IFS= read -r model_name

@@ -2,4 +2,9 @@ resnet50
 detectron2_maskrcnn
 yolov3
 BERT_pytorch
-
+alexnet
+basic_gnn_gcn
+basic_gnn_gin
+basic_gnn_sage
+cm3leon_generate
+dcgan
