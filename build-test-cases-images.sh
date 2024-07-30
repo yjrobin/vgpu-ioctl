@@ -14,6 +14,6 @@ then
         fi
     done < "$model_list"
 else
-    echo "model.list not exists"
+    echo "$model_list not exists"
     exit 1
 fi
