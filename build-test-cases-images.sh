@@ -10,7 +10,7 @@ then
             printf '%s\n' "$model_name"
                 image_name="${base_image}-${model_name}"
                 echo "$image_name"
-                DOCKER_BUILDKIT=0 docker build --build-arg MODEL_NAME=${model_name} -t ${image_name} -f build-test-cases-image.dockerfile .
+                docker build --gpus all --build-arg MODEL_NAME=${model_name} -t ${image_name} -f build-test-cases-image.dockerfile .
         fi
     done < "$model_list"
 else
